@@ -1,0 +1,97 @@
+<link
+  rel="stylesheet"
+  href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"
+/>
+<div class="container">
+  <br />
+  <h3>LIST OF BOOKS FETCHED FROM GOOGLE API</h3>
+  <hr />
+  <div class="row">
+    <br />
+    <div class="col-sm" *ngFor="let book of googlebooks.items; index as i">
+      <br />
+      <div class="card" style="width: 18rem; background-color: #e0e0e0">
+        <img
+          class="card-img-top"
+          src="{{ book.volumeInfo.imageLinks.thumbnail }}"
+          alt="Card image cap"
+          height="300px"
+        />
+        <div class="card-body">
+          <h5 class="card-title">{{ book.volumeInfo.title }}</h5>
+          <p class="card-text" id="text">
+            {{ book.volumeInfo.description }}
+          </p>
+          <button
+            class="btn btn-primary"
+            role="button"
+            aria-pressed="true"
+            (click)="addToChart(book)"
+          >
+            ADD TO CHART
+            <i class="fa fa-cart-plus"></i>
+          </button>
+        </div>
+      </div>
+      <br />
+    </div>
+    <br />
+    <hr />
+  </div>
+  <h3>LIST OF BOOKS ADDED BY ADMIN</h3>
+  <hr />
+  <div class="spacer"></div>
+  <button type="button" class="btn btn-primary" (click)="goAddBook()">
+    ADD BOOK &nbsp;
+    <i class="fa fa-plus-square" aria-hidden="true"></i>
+  </button>
+  <div class="row">
+    <br />
+    <div class="col-sm" *ngFor="let book of addedBooks; index as i">
+      <br />
+      <div class="card" style="width: 18rem; background-color: #e0e0e0">
+        <div class="card-body">
+          <img
+            class="card-img-top"
+            src="./../../../assets/img/book-covers.jpg"
+            alt="Card image cap"
+            height="300px"
+          />
+          <br />
+          <h5 class="card-title">{{ book.title }}</h5>
+          <p class="card-text" id="text">Auther : {{ book.author }}</p>
+          <div class="row">
+            <div class="col-sm-7">
+              <button
+                class="btn btn-primary"
+                role="button"
+                aria-pressed="true"
+                (click)="addToChart(book)"
+              >
+                ADD TO CHART
+                <i class="fa fa-cart-plus"></i>
+              </button>
+            </div>
+
+            <div class="col-col-sm-5">
+              <button
+                class="btn btn-danger"
+                role="button"
+                aria-pressed="true"
+                (click)="deleteBook(book.id)"
+              >
+                DELETE
+                <i class="fa fa-trash"></i>
+              </button>
+            </div>
+          </div>
+          <div style="text-align: center">
+            <br />
+            <h5 class="card-text" id="text">Price : {{ book.price }}$</h5>
+          </div>
+        </div>
+      </div>
+      <br />
+    </div>
+  </div>
+</div>

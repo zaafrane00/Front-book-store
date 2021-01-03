@@ -1,0 +1,158 @@
+<div class="container--fluid">
+  <div class="row">
+    <div class="col-sm-9"></div>
+    <div class="col-sm-3">
+      <div class="btn-group" role="group" aria-label="Basic example">
+        &nbsp;&nbsp;&nbsp;
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="clicked"
+          (click)="clickCreateOrder()"
+        >
+          {{ buttonLabel }}
+        </button>
+        &nbsp; &nbsp; &nbsp;
+        <button
+          type="button"
+          class="btn btn-danger"
+          [disabled]="!clicked"
+          (click)="clickCancelOrder()"
+        >
+          CANCEL
+        </button>
+      </div>
+    </div>
+  </div>
+  <br />
+  <br />
+  <div class="row" style="text-align: center">
+    <div class="col-sm-1"><H6>#</H6></div>
+    <div class="col-sm"><H6>IMAGE</H6></div>
+    <div class="col-sm"><H6>TITLE</H6></div>
+    <div class="col-sm"><H6>PRIX</H6></div>
+    <div class="col-sm"><H6>QUANTITE</H6></div>
+    <div class="col-sm"><H6>ACTION</H6></div>
+  </div>
+  <div
+    class="row"
+    *ngFor="let book of chart; index as i"
+    style="background-color: #e0e0e0; text-align: center"
+  >
+    <br />
+    <div class="col-sm-1">
+      <br /><br /><br />
+      <input
+        *ngIf="!book.ok"
+        type="text"
+        readonly
+        style="
+          background-color: rgba(0, 0, 0, 0);
+          border: none;
+          text-align: center !important;
+        "
+        [(ngModel)]="book.id"
+      />
+    </div>
+    <div class="col-sm">
+      <br />
+      <img
+        src="{{ book.volumeInfo.imageLinks.thumbnail }}"
+        alt=""
+        *ngIf="book.ok"
+      />
+      <img
+        src="./../../assets/img/book-covers.jpg"
+        alt=""
+        *ngIf="!book.ok"
+        width="130px"
+      />
+      <br />
+    </div>
+    <div class="col-sm">
+      <br /><br /><br />
+      <p *ngIf="book.ok">{{ book.volumeInfo.title }}</p>
+      <p *ngIf="!book.ok">{{ book.title }}</p>
+    </div>
+    <div class="col-sm">
+      <br /><br /><br />
+      <p *ngIf="book.ok">50 $</p>
+      <input
+        *ngIf="!book.ok"
+        type="text"
+        readonly
+        style="
+          background-color: rgba(0, 0, 0, 0);
+          border: none;
+          text-align: center !important;
+        "
+        [(ngModel)]="book.price"
+      />
+    </div>
+    <div class="col-sm">
+      <br /><br /><br />
+      <div class="btn-group" role="group" aria-label="Basic example">
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="decrementQte(book)"
+        >
+          -
+        </button>
+        <input
+          type="text"
+          readonly
+          style="
+            background-color: white !important;
+            width: 50px;
+            text-align: center !important;
+          "
+          [(ngModel)]="quantite"
+        />
+        <button
+          type="button"
+          class="btn btn-secondary"
+          (click)="incrementQte(book)"
+        >
+          +
+        </button>
+      </div>
+    </div>
+
+    <div class="col-sm">
+      <br /><br /><br />
+      <div
+        class="btn-group"
+        role="group"
+        aria-label="Basic example"
+        *ngIf="!book.ok"
+      >
+        &nbsp;
+        <button
+          type="button"
+          class="btn btn-primary"
+          [disabled]="!clicked"
+          (click)="addnewBuyLine(book)"
+        >
+          <i class="fa fa-check-square" aria-hidden="true">+</i>
+        </button>
+        &nbsp; &nbsp;
+        <button class="btn btn-danger" aria-label="Delete">
+          <i class="fa fa-trash">-</i>
+        </button>
+      </div>
+    </div>
+    <br />
+    <br />
+  </div>
+  <div class="row">
+    <div class="col-sm-10"></div>
+    <div class="col-sm-2" *ngIf="chart[0] != null">
+      <br />
+      <br />
+      <button type="button" class="btn btn-primary" (click)="submitOrder()">
+        SUBMIT ORDER
+      </button>
+    </div>
+  </div>
+</div>

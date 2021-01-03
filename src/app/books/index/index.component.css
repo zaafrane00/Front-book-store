@@ -1,0 +1,22 @@
+#text {
+  overflow: hidden;
+  text-overflow: ellipsis;
+  display: -webkit-box;
+  -webkit-line-clamp: 2; /* number of lines to show */
+  -webkit-box-orient: vertical;
+}
+.spacer {
+  flex: 1;
+}
+
+.btn btn-primary {
+  background-color: DodgerBlue;
+  border: none;
+  color: white;
+  padding: 12px 16px;
+  font-size: 16px;
+  cursor: pointer;
+}
+.btn btn-primary:hover {
+  background-color: RoyalBlue;
+}

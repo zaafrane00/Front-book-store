@@ -1,0 +1,63 @@
+<div class="container">
+  <h5>ADDING NEW BOOK</h5>
+  <hr />
+  <br />
+  <div class="row">
+    <form>
+      <div class="form-row">
+        <div class="form-group col-md-6">
+          <label for="inputEmail4">TITLE</label>
+          <input
+            type="text"
+            class="form-control"
+            id="inputEmail4"
+            placeholder="Email"
+            required
+            [(ngModel)]="book.title"
+            name="title"
+          />
+        </div>
+        <div class="form-group col-md-6">
+          <label for="inputPassword4">AUTHER</label>
+          <input
+            type="text"
+            class="form-control"
+            id="author"
+            placeholder="author"
+            required
+            [(ngModel)]="book.author"
+            name="author"
+          />
+        </div>
+      </div>
+      <div class="form-group">
+        <label for="inputAddress">PRICE</label>
+        <input
+          type="number"
+          class="form-control"
+          id="price"
+          placeholder="price"
+          required
+          [(ngModel)]="book.price"
+          name="price"
+        />
+      </div>
+      <div class="form-group">
+        <label for="inputAddress2">RELEASE</label>
+        <input
+          type="date"
+          class="form-control"
+          id="Release"
+          placeholder="Release"
+          required
+          [(ngModel)]="book.releaseDate"
+          name="releaseDate"
+        />
+      </div>
+
+      <button type="submit" class="btn btn-primary" (click)="addBook()">
+        SUBMIT
+      </button>
+    </form>
+  </div>
+</div>
